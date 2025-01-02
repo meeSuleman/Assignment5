@@ -1,0 +1,23 @@
+# roles/nodejs/tasks/main.yml
+---
+- name: Update package index
+  apt:
+    update_cache: yes
+    force_apt_get: yes
+  when: ansible_os_family == 'Debian'
+
+- name: Install Node.js and npm
+  apt:
+    name:
+      - nodejs
+      - npm
+    state: present
+  when: ansible_os_family == 'Debian'
+
+- name: Install Node.js and npm
+  yum:
+    name:
+      - nodejs
+      - npm
+    state: present
+  when: ansible_os_family == 'RedHat'
